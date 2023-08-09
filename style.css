@@ -1,18 +1,59 @@
-:root{
-  --bg-color:#1E1E1E;
-  --primary-color:#42D3FF;
-  --text-color:#fff;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-color: #121214;
+  
+  --text-color: #fff;
+  --bg-primary-light:hsla(var(--base-color), 100%,63%,0.13);
+  --primary-color: hsl(var(--base-color), 100%,63%);
+  
+  --base-color:194;
 
   font-size: 62.5%;
 }
 
-body{
+body {
   background-color: var(--bg-color);
   color: var(--text-color);
 
   font-family: 'Roboto', sans-serif;
 }
 
-#timer{
+button {
+  background-color: transparent;
+  border: none;
+
+  cursor: pointer;
+}
+
+.hide{
+  display: none;
+}
+
+.play svg path,
+.pause svg path,
+.sound-on svg path {
+  fill:var(--primary-color);
+}
+
+
+
+#timer {
   font-size: 8.8rem;
+  /* Este valor pode ser ajustado conforme necessário */
+  display: flex;
+}
+
+#controls {
+  background-color: var(--bg-primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3.2rem;
+
+  border-radius: 9999px;
 }
