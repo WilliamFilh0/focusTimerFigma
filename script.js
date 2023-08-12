@@ -89,7 +89,9 @@ buttonSoundOn.addEventListener('click', function () {
 //botton pra determinar os minutos 
 buttonSet.addEventListener('click', function () {
   let newMinutes = prompt('Quantos minutos?') 
+  // o código verifica se newMinutes é falso ou vazio.
   if(!newMinutes){
+    // Essa função redefine o temporizador para os minutos iniciais e zera os segundos
     resetTimer()
     return
   }
