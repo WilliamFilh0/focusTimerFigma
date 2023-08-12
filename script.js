@@ -29,7 +29,6 @@ function resetTimer() {
   clearTimeout(timerTimeOut)
 }
 
-
 //A função countdown() utiliza a função setTimeout() para agendar a execução de um bloco de código após um atraso de 1000 milissegundos (1 segundo). Isso permite que a contagem regressiva ocorra a cada segundo.
 function countdown() {
   timerTimeOut = setTimeout(function () {
@@ -89,6 +88,12 @@ buttonSoundOn.addEventListener('click', function () {
 
 //botton pra determinar os minutos 
 buttonSet.addEventListener('click', function () {
-  minutes = prompt('Quantos minutos?') || 0
+  let newMinutes = prompt('Quantos minutos?') 
+  if(!newMinutes){
+    resetTimer()
+    return
+  }
+
+  minutes = newMinutes
   updateTimerDisplay(minutes, 0)
 })
