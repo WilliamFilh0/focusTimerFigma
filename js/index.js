@@ -95,7 +95,7 @@ buttonSet.addEventListener('click', function () {
     resetTimer()
     return
   }
-
+  //Essa linha atualiza o valor da variável minutes com o valor inserido pelo usuário.
   minutes = newMinutes
   updateTimerDisplay(minutes, 0)
 })
