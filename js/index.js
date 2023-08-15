@@ -1,7 +1,7 @@
 //default import
-import resetControls from "./controls.js"
+import Controls from "./controls.js"
 //named import
-import { Timer } from "./timer.js"
+import Timer from "./timer.js"
 
 
 const buttonPlay = document.querySelector('.play')
@@ -12,34 +12,37 @@ const buttonSoundOn = document.querySelector('.sound-on')
 const buttonSoundOff = document.querySelector('.sound-off')
 const minutesDisplay = document.querySelector('.minutes')
 const secondsDisplay = document.querySelector('.seconds')
-let minutes = Number(minutesDisplay.textContent)
-let timerTimeOut
+
+
+const controls = Controls({
+  buttonPause,
+  buttonPlay,
+  buttonSet,
+  buttonStop,
+})
 
 const timer = Timer({
   minutesDisplay,
   secondsDisplay,
-  timerTimeOut,
+  resetControls: controls.reset,
+  
 })
 
-buttonPlay.addEventListener('click', function () {
-  buttonPlay.classList.add('hide')
-  buttonPause.classList.remove('hide')
-  buttonSet.classList.add('hide')
-  buttonStop.classList.remove('hide')
 
+buttonPlay.addEventListener('click', function () {
+  controls.play()
   timer.countdown()
 })
 
 buttonPause.addEventListener('click', function () {
-  buttonPause.classList.add('hide')
-  buttonPlay.classList.remove('hide')
-  //Parar o cronometro
-  clearTimeout(timerTimeOut)
+  controls.pause()
+  timer.hold()
+ 
 })
 
 buttonStop.addEventListener('click', function () {
-  resetControls()
-  timer.resetTimer()
+  controls.reset()
+  timer.reset()
 })
 
 buttonSoundOff.addEventListener('click', function () {
@@ -54,14 +57,14 @@ buttonSoundOn.addEventListener('click', function () {
 
 //botton pra determinar os minutos 
 buttonSet.addEventListener('click', function () {
-  let newMinutes = prompt('Quantos minutos?')
+  let newMinutes = controls.getMinutes()
   // o código verifica se newMinutes é falso ou vazio.
   if (!newMinutes) {
     // Essa função redefine o temporizador para os minutos iniciais e zera os segundos
-    timer.resetTimer()
+    timer.reset()
     return
   }
   //Essa linha atualiza o valor da variável minutes com o valor inserido pelo usuário.
-  minutes = newMinutes
-  updateTimerDisplay(minutes, 0)
+  timer.updateDisplay(newMinutes, 0)
+  timer.updateMinutes(newMinutes)
 })
