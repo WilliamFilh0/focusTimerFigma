@@ -10,9 +10,11 @@ export default function Timer({
 
 
   //A função updateTimerDisplay() é chamada para atualizar o valor exibido na contagem regressiva
-  function updateDisplay(minutes, seconds) {
+  function updateDisplay(newMinutes, seconds) {
+    newMinutes = newMinutes === undefined ? minutes : newMinutes
+    seconds = seconds === undefined ? 0 : seconds
     //Completa o numero com um carcter com um "0" na frente 
-    minutesDisplay.textContent = String(minutes).padStart(2, "0")
+    minutesDisplay.textContent = String(newMinutes).padStart(2, "0")
     secondsDisplay.textContent = String(seconds).padStart(2, "0")
   }
 
@@ -27,17 +29,19 @@ export default function Timer({
       //Para obter o valor atual dos minutos a partir do elemento de exibição correspondente.
       let seconds = Number(secondsDisplay.textContent)
       let minutes = Number(minutesDisplay.textContent)
+      let isFinished = minutes <= 0 && seconds <=0
 
       updateDisplay(minutes, 0)
 
-      if (minutes <= 0) {
+      if (isFinished) {
         resetControls()
+        updateDisplay()
         return
       }
 
 
       if (seconds <= 0) {
-        seconds = 3
+        seconds = 60
         --minutes
       }
 
