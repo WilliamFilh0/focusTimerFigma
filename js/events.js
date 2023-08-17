@@ -31,13 +31,13 @@ export default function ({ controls, timer, sound }) {
   buttonSoundOff.addEventListener('click', function () {
     buttonSoundOn.classList.remove('hide')
     buttonSoundOff.classList.add('hide')
-    sound.bgAudio.pause()
+    sound.bgAudio.play()
   })
-
+  
   buttonSoundOn.addEventListener('click', function () {
     buttonSoundOn.classList.add('hide')
     buttonSoundOff.classList.remove('hide')
-    sound.bgAudio.play()
+    sound.bgAudio.pause()
   })
 
   //botton pra determinar os minutos 
